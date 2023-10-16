@@ -1,6 +1,6 @@
 export class College {
-    constructor(id, collegeName) {
-        this.id = id;
+    constructor(collegeId, collegeName) {
+        this.collegeId = collegeId;
         this.collegeName = collegeName;
         this.colleges = [];
     }
