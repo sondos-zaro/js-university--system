@@ -3,6 +3,5 @@ export class College {
         this.id = id;
         this.name = name;
         this.colleges = [];
-        this.majors = [];
     }
 } 
