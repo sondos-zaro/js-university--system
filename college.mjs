@@ -1,7 +1,7 @@
 export class College {
-    constructor(id, name) {
+    constructor(id, collegeName) {
         this.id = id;
-        this.name = name;
+        this.collegeName = collegeName;
         this.colleges = [];
     }
 } 
