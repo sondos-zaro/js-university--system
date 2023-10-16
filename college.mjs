@@ -15,4 +15,9 @@ export class College {
   }
 }
 
+class CollegeServices {
 
+    addCollege(college) {
+        universityList.push(college);
+    }
+}
