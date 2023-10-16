@@ -1,16 +1,18 @@
-export class College {
-    
-    constructor(collegeName) {
-        this.collegeId = this.generateNewId();
-        this.collegeName = collegeName;
-        this.colleges = [];
-    }
+import { universityList } from "./utils/university.mjs";
 
-    generateNewId() {
-        if (!this.colleges) {
-            return 0;
-        }
-        let ids = this.colleges.map(college => college.collegeId);
-        return  Math.max(...ids) + 1;         
+export class College {
+  constructor(collegeName) {
+    this.collegeId = this.generateNewId();
+    this.collegeName = collegeName;
+  }
+
+  generateNewId() {
+    if (!universityList.length === 0) {
+      return 0;
     }
-} 
+    let ids = universityList.map((college) => college.collegeId);
+    return Math.max(...ids) + 1;
+  }
+}
+
+
