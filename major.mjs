@@ -1,8 +1,12 @@
-export class Major {
+import { College } from "./college.mjs";
 
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
+export class Major extends College {
+
+    constructor(collegeId, collegeName, majorName, majorId) {
+        super(collegeId);
+        super(collegeName);
+        this.majorId = majorId;
+        this.majorName = majorName;
         this.majors = [];
     }
 
