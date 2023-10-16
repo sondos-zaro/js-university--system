@@ -9,4 +9,11 @@ export class Major extends College {
         this.majors = [];
     }
 
-} 
+    // Implement add major method
+    addMajor(majorName) {
+        this.majors.push(majorName)
+    }
+
+}
+
+
