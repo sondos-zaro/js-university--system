@@ -31,3 +31,18 @@ export class Course extends Major {
     }
 } 
 
+class CourseService extends MajorService {
+
+    isCourseExist(majorName, courseName) {
+        let majorIndex = this.getIndex(majorName);
+        let collegeIndex = this.getCollegeIndexForMajor(majorName)
+
+        if (majorIndex !== -1) {
+            let courseIndex = universityList[collegeIndex].Major[majorIndex].course.map(course =>
+                course.courseName.toLowerCase()).includes(courseName.toLowerCase());
+            return courseIndex;    
+        } else {
+            console.log("this major doesn't exist")
+        }
+    }
+}
