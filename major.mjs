@@ -12,7 +12,7 @@ export class Major extends College {
     generateNewId() {
         const ids = [];
 
-        if (!universityList.length === 0) {
+        if (universityList.length === 0) {
             return 0;
         }
 
@@ -27,17 +27,15 @@ export class Major extends College {
 
 }
 
-class MajorService {
+export class MajorService {
     
     // Implement add major method
-    addMajor(collegeName, obj) {
-        for (let i = 0; i < universityList.length; i++) {
-            if (universityList[i].collegeName == collegeName) {
-                universityList[i].Major.push(obj)
-            }
-            else
-                console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`)
-        }
+    addMajor(collegeName, major) {
+        let collegeIndex = this.getCollegeIndex(collegeName);
+        if (collegeIndex !== -1) {
+            universityList[collegeIndex].Major.push(major)
+        } else
+        console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
     }
 
     // Implement delete major method
@@ -77,7 +75,10 @@ class MajorService {
             index = element.Major.findIndex(element => element.majorName == majorName);
         });
 
-        return index
+        return index;
     }
 
+    getCollegeIndex(collegeName) {
+        return universityList.findIndex(college => collegeName === college.collegeName)
+    }
 }
