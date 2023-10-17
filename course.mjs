@@ -5,7 +5,7 @@ import { universityList } from "./utils/university.mjs";
 
 export class Course extends Major {
 
-    constructor(collegeName, majorName,courseName, numberOfHours, type, prerequisites) {
+    constructor(collegeName, majorName, courseName, numberOfHours, type, prerequisites) {
         super(collegeName, majorName);
         this.courseId = this.generateCourseId();
         this.courseName = courseName;
@@ -19,9 +19,9 @@ export class Course extends Major {
         const majorIndex = major.getIndex(this.majorName);
         const collegeIndex = major.getCollegeIndex(this.collegeName)
 
-        if (majorIndex !== -1 && collegeIndex !== -1){
+        if (majorIndex !== -1 && collegeIndex !== -1) {
             const ids = universityList[collegeIndex].Major[majorIndex].map((course) => course.courseId);
-            
+
             return Math.max(...ids) + 1;
         }
         else {
@@ -29,5 +29,21 @@ export class Course extends Major {
         }
 
     }
-} 
+}
+
+class CourseService extends MajorService {
+
+    // get index by major name
+    getCourseIndex(majorName, courseName) {
+        const majorIndex = this.getIndex(majorName)
+        let index;
+
+        universityList.forEach(element => {
+            index = element.Major[majorIndex].course.findIndex(element => element.courseName == courseName)
+        });
+
+        return index;
+    }
+
+}
 
