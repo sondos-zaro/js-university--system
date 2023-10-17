@@ -28,6 +28,11 @@ export class Major extends College {
 
 class MajorService {
 
+    // Check if major exists
+    isMajorExist(majorName) {
+        return this.getIndex(majorName) != -1 ? true : false;
+    }
+
     // get index by major name
     getIndex(majorName) {
         let index;
@@ -38,5 +43,5 @@ class MajorService {
 
         return index
     }
-    
+
 }
