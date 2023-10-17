@@ -37,5 +37,13 @@ class CollegeServices {
         }
 
         return universityList.map(college => college.collegeName.toLowerCase()).includes(collegeName.toLowerCase());
-  }
+    }
+
+    getCollegeIndex(collegeName) {
+        if (typeof collegeName !== "string") {
+            return;
+        }
+
+        return universityList.findIndex(college => collegeName === college.collegeName);
+    }
 }
