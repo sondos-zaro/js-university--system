@@ -28,6 +28,19 @@ export class Major extends College {
 
 class MajorService {
 
+
+    // Edit major name method
+    updateMajorName(oldName, newName) {
+        const index = this.getIndex(oldName);
+
+        if (index != -1) {
+            universityList.forEach(element => element.Major[index].majorName = newName);
+            console.log(`The name has been successfully changed`)
+        } else {
+            console.log(`The Edit process was not successful, There is no major in this name: ${oldName}!`)
+        }
+    }
+
     // get index by major name
     getIndex(majorName) {
         let index;
@@ -38,5 +51,9 @@ class MajorService {
 
         return index
     }
-    
+
 }
+
+const majorService = new MajorService();
+
+majorService.updateMajorName("IT", "CS")
