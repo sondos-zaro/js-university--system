@@ -46,4 +46,14 @@ class CollegeServices {
 
         return universityList.findIndex(college => collegeName === college.collegeName);
     }
+
+    deleteCollege(collegeName) {
+        let collegeIndex = this.getCollegeIndex(collegeName);
+
+        if(collegeIndex === -1) {
+            console.log("This college doesn't exit");
+        } else {
+            universityList.splice(collegeIndex,1);
+        }
+    }
 }
