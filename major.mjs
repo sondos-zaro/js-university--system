@@ -53,7 +53,3 @@ class MajorService {
     }
 
 }
-
-const majorService = new MajorService();
-
-majorService.updateMajorName("IT", "CS")
