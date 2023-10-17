@@ -5,7 +5,7 @@ export class College {
     constructor(collegeName) {
         this.collegeId = this.generateNewId();
         this.collegeName = collegeName;
-  }
+    }
 
     generateNewId() {
         if (universityList.length === 0) {
