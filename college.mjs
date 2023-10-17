@@ -5,7 +5,7 @@ export class College {
     constructor(collegeName) {
         this.collegeId = this.generateNewId();
         this.collegeName = collegeName;
-  }
+    }
 
     generateNewId() {
         if (universityList.length === 0) {
@@ -19,9 +19,9 @@ export class College {
 }
 
 class CollegeServices {
-    
+    // Add new college to the array
     addCollege(college) {
-        const ifExist = this.ifExist(college.collegeName);
+        const ifExist = this.isCollegeExist(college.collegeName);
         
         if (ifExist) {
             console.log("this college is already exist");
@@ -30,6 +30,7 @@ class CollegeServices {
         }
     }
 
+    // Update the name of specific college
     updateCollege(oldName, newName) {
         const collegeIndex = this.getCollegeIndex(oldName);
 
@@ -39,8 +40,9 @@ class CollegeServices {
             universityList[collegeIndex].collegeName = newName;
         }
     }
-
-    ifExist(collegeName) {
+    
+    // Check if a specific exist
+    isCollegeExist(collegeName) {
         if (typeof collegeName !== "string") {
             return;
         }
@@ -48,6 +50,7 @@ class CollegeServices {
         return universityList.map(college => college.collegeName.toLowerCase()).includes(collegeName.toLowerCase());
     }
 
+    // Get an index for a specific college
     getCollegeIndex(collegeName) {
         if (typeof collegeName !== "string") {
             return;
@@ -56,6 +59,7 @@ class CollegeServices {
         return universityList.findIndex(college => collegeName === college.collegeName);
     }
 
+    // Delete college
     deleteCollege(collegeName) {
         const collegeIndex = this.getCollegeIndex(collegeName);
 

@@ -12,7 +12,7 @@ export class Major extends College {
     generateNewId() {
         const ids = [];
 
-        if (!universityList.length === 0) {
+        if (universityList.length === 0) {
             return 0;
         }
 
@@ -24,11 +24,32 @@ export class Major extends College {
 
         return Math.max(...ids) + 1;
     }
+
 }
 
 export class MajorService {
+    
+    // Implement add major method
+    addMajor(collegeName, major) {
+        let collegeIndex = this.getCollegeIndex(collegeName);
+        if (collegeIndex !== -1) {
+            universityList[collegeIndex].Major.push(major)
+        } else
+        console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
+    }
 
-    // Check if major exists
+    // Implement delete major method
+    deleteMajor(majorName) {
+        const index = this.getIndex(majorName);
+        if (index != -1) {
+            universityList.forEach(element => element.Major.splice(index, 1));
+            console.log(`The delete process was successful!`)
+        } else {
+            console.log(`The delete process was not successful, There is no major in this name: ${majorName}!`)
+            // Check if major exists
+        }
+    }
+
     isMajorExist(majorName) {
         return this.getIndex(majorName) != -1 ? true : false;
     }
@@ -48,12 +69,16 @@ export class MajorService {
 
     // get index by major name
     getIndex(majorName) {
-        let index 
-         universityList.forEach(college => {index =
-            college.Major.findIndex(major => major.majorName === majorName);
+        let index;
+
+        universityList.forEach(element => {
+            index = element.Major.findIndex(element => element.majorName == majorName);
         });
 
         return index;
     }
 
+    getCollegeIndex(collegeName) {
+        return universityList.findIndex(college => collegeName === college.collegeName)
+    }
 }
