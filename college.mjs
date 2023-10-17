@@ -21,7 +21,13 @@ export class College {
 class CollegeServices {
     
     addCollege(college) {
-        universityList.push(college);
+        const ifExist = this.ifExist(college.collegeName);
+        
+        if (ifExist) {
+            console.log("this college is already exist");
+        } else {
+            universityList.push(college);
+        }
     }
 
     updateCollege(collegeName, newCollege) {
@@ -54,7 +60,7 @@ class CollegeServices {
         if(collegeIndex === -1) {
             console.log("This college doesn't exit");
         } else {
-            universityList.splice(collegeIndex,1);
+            universityList.splice(collegeIndex, 1);
         }
     }
 }
