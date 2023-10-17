@@ -1,4 +1,5 @@
 import { College } from "./college.mjs";
+import { universityList } from "./utils/university.mjs";
 
 export class Major extends College {
 
@@ -29,10 +30,14 @@ export class Major extends College {
 class MajorService {
 
     // Implement add major method
-    addMajor() {
-
+    addMajor(collegeName, obj) {
+        for (let i = 0; i < universityList.length; i++) {
+            if (universityList[i].collegeName == collegeName) {
+                universityList[i].Major.push(obj)
+            }
+            else
+                console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`)
+        }
     }
 
 }
-
-
