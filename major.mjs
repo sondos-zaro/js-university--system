@@ -29,14 +29,15 @@ export class Major extends College {
 
 class MajorService {
 
-    // Implement add major method
-    addMajor(collegeName, obj) {
-        for (let i = 0; i < universityList.length; i++) {
-            if (universityList[i].collegeName == collegeName) {
-                universityList[i].Major.push(obj)
-            }
-            else
-                console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`)
+    // Implement delete major method
+    deleteMajor(majorName) {
+        const index = this.getIndex(majorName);
+
+        if (index != -1) {
+            universityList.forEach(element => element.Major.splice(index, 1));
+            console.log(`The delete process was successful!`)
+        } else {
+            console.log(`The delete process was not successful, There is no major in this name: ${majorName}!`)
         }
     }
 
