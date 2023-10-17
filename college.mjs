@@ -25,7 +25,7 @@ class CollegeServices {
     }
 
     updateCollege(collegeName, newCollege) {
-        const collegeIndex =this.getCollegeIndex(collegeName);
+        const collegeIndex = this.getCollegeIndex(collegeName);
 
         if (collegeIndex === -1) {
             console.log("This college doesn't exit");
@@ -56,7 +56,7 @@ class CollegeServices {
         if(collegeIndex === -1) {
             console.log("This college doesn't exit");
         } else {
-            universityList.splice(collegeIndex,1);
+            universityList.splice(collegeIndex, 1);
         }
     }
 }
