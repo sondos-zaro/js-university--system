@@ -18,4 +18,36 @@ export let universityList = [
       },
     ],
   },
+  {
+    collegeId: 2,
+    collegeName: "AU college",
+    Major: [
+      {
+        majorId: 1,
+        majorName: "AU",
+        course: [
+          {
+            courseId: 1,
+            courseName: "data structue",
+            numberOfHours: 3,
+            type: "college requirments",
+            prerequisites: "oob",
+          },
+        ],
+      },
+      {
+        majorId: 2,
+        majorName: "ac",
+        course: [
+          {
+            courseId: 1,
+            courseName: "data structue",
+            numberOfHours: 3,
+            type: "college requirments",
+            prerequisites: "oob",
+          },
+        ],
+      },
+    ],
+  },
 ];

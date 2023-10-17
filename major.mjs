@@ -26,7 +26,7 @@ export class Major extends College {
     }
 }
 
-class MajorService {
+export class MajorService {
 
     // Check if major exists
     isMajorExist(majorName) {
@@ -48,13 +48,12 @@ class MajorService {
 
     // get index by major name
     getIndex(majorName) {
-        let index;
-
-        universityList.forEach(element => {
-            element.Major.forEach(element => index = element.majorName.indexOf(majorName));
+        let index 
+         universityList.forEach(college => {index =
+            college.Major.findIndex(major => major.majorName === majorName);
         });
 
-        return index
+        return index;
     }
 
 }
