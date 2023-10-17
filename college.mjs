@@ -21,7 +21,13 @@ export class College {
 class CollegeServices {
     
     addCollege(college) {
-        universityList.push(college);
+        const ifExist = this.ifExist(college.collegeName);
+        
+        if (ifExist) {
+            console.log("this college is already exist");
+        } else {
+            universityList.push(college);
+        }
     }
 
     updateCollege(oldName, newName) {
