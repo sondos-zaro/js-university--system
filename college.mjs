@@ -24,13 +24,13 @@ class CollegeServices {
         universityList.push(college);
     }
 
-    updateCollege(collegeName, newCollege) {
-        const collegeIndex = this.getCollegeIndex(collegeName);
+    updateCollege(oldName, newName) {
+        const collegeIndex = this.getCollegeIndex(oldName);
 
         if (collegeIndex === -1) {
             console.log("This college doesn't exit");
         } else {
-            universityList[collegeIndex] = newCollege;
+            universityList[collegeIndex].collegeName = newName;
         }
     }
 
@@ -60,4 +60,3 @@ class CollegeServices {
         }
     }
 }
-
