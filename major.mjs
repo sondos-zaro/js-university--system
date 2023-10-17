@@ -29,16 +29,15 @@ export class Major extends College {
 
 class MajorService {
 
-    // Implement delete major method
-    deleteMajor(majorName) {
-        const index = this.getIndex(majorName);
+    // get index by major name
+    getIndex(majorName) {
+        let index;
 
-        if (index != -1) {
-            universityList.forEach(element => element.Major.splice(index, 1));
-            console.log(`The delete process was successful!`)
-        } else {
-            console.log(`The delete process was not successful, There is no major in this name: ${majorName}!`)
-        }
+        universityList.forEach(element => {
+            element.Major.forEach(element => index = element.majorName.indexOf(majorName));
+        });
+
+        return index
     }
 
 }
