@@ -28,5 +28,14 @@ class CollegeServices {
             universityList[collegeIndex] = newCollege;
         }
     }
-}
 
+    ifExist(collegeName) {
+        if (typeof collegeName !== "string") {
+            return;
+        }
+
+        let isExist = universityList.map(college => college.collegeName.toLowerCase()).includes(collegeName.toLowerCase())
+        
+        return isExist;
+    }
+}
