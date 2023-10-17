@@ -24,7 +24,6 @@ export class Major extends College {
 
         return Math.max(...ids) + 1;
     }
-
 }
 
 class MajorService {
@@ -39,5 +38,5 @@ class MajorService {
 
         return index
     }
-
+    
 }
