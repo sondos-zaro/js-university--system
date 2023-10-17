@@ -81,4 +81,12 @@ export class MajorService {
     getCollegeIndex(collegeName) {
         return universityList.findIndex(college => collegeName === college.collegeName)
     }
+
+    getCollegeIndexForMajor(majorName) {
+        let collegeIndex = universityList.findIndex( (college) => {
+            return college.Major.map(major => major.majorName.toLowerCase()).includes(majorName.toLowerCase());
+            });
+
+        return collegeIndex; 
+    }
 }
