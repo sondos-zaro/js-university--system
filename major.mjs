@@ -28,6 +28,11 @@ export class Major extends College {
 
 class MajorService {
 
+    // Check if major exists
+    isMajorExist(majorName) {
+        return this.getIndex(majorName) != -1 ? true : false;
+    }
+
 
     // Edit major name method
     updateMajorName(oldName, newName) {
