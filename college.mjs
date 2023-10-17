@@ -11,7 +11,7 @@ export class College {
         if (universityList.length === 0) {
             return universityList.length;
         } else {
-            let ids = universityList.map((college) => college.collegeId);
+            const ids = universityList.map((college) => college.collegeId);
 
             return Math.max(...ids) + 1;
         }
@@ -24,7 +24,7 @@ class CollegeServices {
     }
 
     updateCollege(collegeName, newCollege) {
-        let collegeIndex = universityList.findIndex(college => collegeName === college.collegeName);
+        const collegeIndex = universityList.findIndex(college => collegeName === college.collegeName);
 
         if (collegeIndex === -1) {
             universityList[collegeIndex] = newCollege;
@@ -48,7 +48,7 @@ class CollegeServices {
     }
 
     deleteCollege(collegeName) {
-        let collegeIndex = this.getCollegeIndex(collegeName);
+        const collegeIndex = this.getCollegeIndex(collegeName);
 
         if(collegeIndex === -1) {
             console.log("This college doesn't exit");
