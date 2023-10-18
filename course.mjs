@@ -33,21 +33,19 @@ export class Course extends Major {
 
 class CourseService extends MajorService {
 
-    // get index by major name
-    getCourseIndex(majorName, courseName) {
-        const majorIndex = this.getIndex(majorName)
-        let index;
-
-        universityList.forEach(element => {
-            index = element.Major[majorIndex].course.findIndex(element => element.courseName == courseName)
-        });
-
-        return index;
+    // Implement delete major method
+    deleteMajor(majorName, courseName) {
+        const majorIndex = 1
+        const courseIndex = this.getCourseIndex(courseName);
+        console.log(courseIndex);
+        if (courseIndex != -1) {
+            universityList[0].Major[0].course.findIndex(element => element.courseName == courseName)
+            universityList.forEach(element => element.Major[majorIndex].course.splice(courseIndex, 1));
+            console.log(`The delete process was successful!`)
+        } else {
+            console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
+        }
     }
-
-}
-
-class CourseService extends MajorService {
 
     isCourseExist(majorName, courseName) {
         let majorIndex = this.getIndex(majorName);
@@ -56,9 +54,24 @@ class CourseService extends MajorService {
         if (majorIndex !== -1) {
             let courseIndex = universityList[collegeIndex].Major[majorIndex].course.map(course =>
                 course.courseName.toLowerCase()).includes(courseName.toLowerCase());
-            return courseIndex;    
+            return courseIndex;
         } else {
             console.log("this major doesn't exist")
         }
     }
+
+    // get index by major name
+    getCourseIndex(majorName, courseName) {
+        const majorIndex = this.getIndex("AU")
+        let index;
+
+        universityList.forEach(element => {
+            index = element.Major[majorName].course.findIndex(element => element.courseName == courseName)
+        });
+
+        return index;
+    }
+
 }
+
+
