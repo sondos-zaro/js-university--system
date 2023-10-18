@@ -33,6 +33,28 @@ export class Course extends Major {
 
 class CourseService extends MajorService {
 
+    // Implement Edit Course method
+    updateCourse(majorName, courseName, numberOfHours, type, prerequisites) {
+        let collegeIndex;
+        const majorIndex = this.getIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+
+        for (let i = 0; i < universityList.length; i++) {
+            universityList[i].Major.find((element) => element.majorName === majorName ?
+                collegeIndex = i : collegeIndex = -1);
+        }
+
+        if (courseIndex != -1 && majorIndex != -1) {
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].numberOfHours = numberOfHours;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].courseName = courseName;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].type = type;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].prerequisites = prerequisites;
+            console.log(`The edit process was successful!`)
+        } else {
+            console.log(`The edit process was failed`)
+        }
+    }
+
     // Implement delete Course method
     deleteCourse(majorName, courseName) {
         let collegeIndex;
