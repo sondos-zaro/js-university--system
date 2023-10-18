@@ -28,14 +28,14 @@ export class Major extends College {
 }
 
 export class MajorService {
-    
+
     // Implement add major method
     addMajor(collegeName, major) {
         let collegeIndex = this.getCollegeIndex(collegeName);
         if (collegeIndex !== -1) {
             universityList[collegeIndex].Major.push(major)
         } else
-        console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
+            console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
     }
 
     // Implement delete major method
@@ -69,13 +69,13 @@ export class MajorService {
 
     // get index by major name
     getIndex(majorName) {
-        let index;
-
-        universityList.forEach(element => {
-            index = element.Major.findIndex(element => element.majorName == majorName);
-        });
-
-        return index;
+        for (let i = 0; i < universityList.length; i++) {
+            for (let j = 0; j < universityList[i].Major.length; j++) {
+                if (universityList[i].Major[j].majorName == majorName)
+                    return j;
+            }
+        }
+        return -1;
     }
 
     getCollegeIndex(collegeName) {
@@ -83,10 +83,10 @@ export class MajorService {
     }
 
     getCollegeIndexForMajor(majorName) {
-        let collegeIndex = universityList.findIndex( (college) => {
+        let collegeIndex = universityList.findIndex((college) => {
             return college.Major.map(major => major.majorName.toLowerCase()).includes(majorName.toLowerCase());
-            });
+        });
 
-        return collegeIndex; 
+        return collegeIndex;
     }
 }
