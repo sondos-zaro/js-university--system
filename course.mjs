@@ -33,14 +33,19 @@ export class Course extends Major {
 
 class CourseService extends MajorService {
 
-    // Implement delete major method
-    deleteMajor(majorName, courseName) {
-        const majorIndex = 1
-        const courseIndex = this.getCourseIndex(courseName);
-        console.log(courseIndex);
-        if (courseIndex != -1) {
-            universityList[0].Major[0].course.findIndex(element => element.courseName == courseName)
-            universityList.forEach(element => element.Major[majorIndex].course.splice(courseIndex, 1));
+    // Implement delete Course method
+    deleteCourse(majorName, courseName) {
+        let collegeIndex;
+        const majorIndex = this.getIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+
+        for (let i = 0; i < universityList.length; i++) {
+            universityList[i].Major.find((element) => element.majorName === majorName ?
+                collegeIndex = i : collegeIndex = -1);
+        }
+
+        if (courseIndex != -1 && majorIndex != -1) {
+            universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
             console.log(`The delete process was successful!`)
         } else {
             console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
@@ -62,16 +67,15 @@ class CourseService extends MajorService {
 
     // get index by major name
     getCourseIndex(majorName, courseName) {
-        const majorIndex = this.getIndex("AU")
+        const majorIndex = this.getIndex(majorName)
         let index;
+        console.log(majorIndex)
 
         universityList.forEach(element => {
-            index = element.Major[majorName].course.findIndex(element => element.courseName == courseName)
+            index = element.Major[majorIndex].course.findIndex(element => element.courseName == courseName)
         });
 
         return index;
     }
 
 }
-
-
