@@ -8,7 +8,7 @@ export class Major {
     }
 }
 
-export class MajorService extends CollegeServices{
+export class MajorServices extends CollegeServices{
     
     // Implement add major method
     addMajor(collegeName, major) {

@@ -1,4 +1,4 @@
-import { MajorService } from "./major.mjs";
+import { MajorServices } from "./major.mjs";
 import { universityList } from "./utils/university.mjs";
 
 export class Course {
@@ -12,7 +12,7 @@ export class Course {
 
 }
 
-class CourseService extends MajorService {
+export class CourseServices extends MajorServices{
 
     generateCourseId(majorName) {
         const majorIndex = this.getMajorIndex(majorName);
@@ -44,7 +44,7 @@ class CourseService extends MajorService {
     // Implement Edit Course method
     updateCourse(majorName, courseName, numberOfHours, type, prerequisites) {
         const collegeIndex = this.getCollegeIndexForMajor(majorName);
-        const majorIndex = this.getIndex(majorName);
+        const majorIndex = this.getMajorIndex(majorName);
         const courseIndex = this.getCourseIndex(majorName, courseName);
 
         if (courseIndex != -1 && majorIndex != -1) {
@@ -64,13 +64,13 @@ class CourseService extends MajorService {
         const majorIndex = this.getMajorIndex(majorName);
         const courseIndex = this.getCourseIndex(majorName, courseName);
 
-        console.log(universityList[collegeIndex].Major[majorIndex].course)
         if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
             console.log(`The delete process was successful!`)
         } else {
             console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
         }
+
     }
 
     isCourseExist(majorName, courseName) {
@@ -94,11 +94,8 @@ class CourseService extends MajorService {
             const collegeIndex = this.getCollegeIndexForMajor(majorName);
             course.courseId = this.generateCourseId(majorName);
             universityList[collegeIndex].Major[majorIndex].course.push(course);
-            let courseIndex = universityList[collegeIndex].Major[majorIndex].course.map(course =>
-                course.courseName.toLowerCase()).includes(courseName.toLowerCase());
-            return courseIndex;
         } else {
-            console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`);
+        console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`); 
         }
     }
 
