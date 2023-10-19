@@ -1,41 +1,43 @@
-import { College } from "./college.mjs";
+import { College, CollegeServices} from "./college.mjs";
 import { universityList } from "./utils/university.mjs";
 
-export class Major extends College {
+export class Major {
 
-    constructor(collegeName, majorName) {
-        super(collegeName);
-        this.id = this.generateNewId()
+    constructor(majorName) {
         this.majorName = majorName;
     }
+}
 
-    generateNewId() {
+export class MajorService extends CollegeServices{
+    
+    // Implement add major method
+    addMajor(collegeName, major) {
+        const collegeIndex = this.getCollegeIndex(collegeName);
+        if (collegeIndex !== -1) {
+            major.majorId = this.generateMajorId(collegeIndex)
+            universityList[collegeIndex].Major.push(major);
+        } else
+        console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
+    }
+
+    
+    generateMajorId(collegeIndex) {
         const ids = [];
 
         if (universityList.length === 0) {
             return 0;
         }
 
-        universityList.forEach(element => {
-            element.Major.forEach(element => {
-                ids.push(element.majorId);
-            });
-        });
+        universityList[collegeIndex].Major.forEach(major =>
+            ids.push(major.majorId)
+            )
+        // universityList.forEach(element => {
+        //     element.Major.forEach(element => {
+        //         ids.push(element.majorId);
+        //     });
+        // });
 
         return Math.max(...ids) + 1;
-    }
-
-}
-
-export class MajorService {
-    
-    // Implement add major method
-    addMajor(collegeName, major) {
-        let collegeIndex = this.getCollegeIndex(collegeName);
-        if (collegeIndex !== -1) {
-            universityList[collegeIndex].Major.push(major)
-        } else
-        console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
     }
 
     // Implement delete major method
@@ -76,10 +78,6 @@ export class MajorService {
         });
 
         return index;
-    }
-
-    getCollegeIndex(collegeName) {
-        return universityList.findIndex(college => collegeName === college.collegeName)
     }
 
     getCollegeIndexForMajor(majorName) {

@@ -45,10 +45,6 @@ class CourseService extends MajorService {
         return index;
     }
 
-}
-
-class CourseService extends MajorService {
-
     isCourseExist(majorName, courseName) {
         let majorIndex = this.getIndex(majorName);
         let collegeIndex = this.getCollegeIndexForMajor(majorName)
@@ -61,4 +57,21 @@ class CourseService extends MajorService {
             console.log("this major doesn't exist")
         }
     }
+
+    addCourse(newCourse) {
+        const majorIndex = 1;
+        const collegeIndex = this.getCollegeIndex(newCourse.collegeName)
+        if (majorIndex !== -1 && collegeIndex !== -1) {
+            universityList[collegeIndex].Major[majorIndex].course.push(newCourse);
+            console.log(universityList[collegeIndex].Major[majorIndex].course)
+        } else {
+            console.log("this major or college doesn't exist")
+        }
+    }
 }
+
+
+let i = new Course("AU college","IT","datattttttt",3,"d","dfds");
+let n = new CourseService();
+n.addCourse(i);
+// console.log(universityList[2].Major[1])

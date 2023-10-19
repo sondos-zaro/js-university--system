@@ -3,11 +3,26 @@ import { universityList } from "./utils/university.mjs";
 export class College {
 
     constructor(collegeName) {
-        this.collegeId = this.generateNewId();
         this.collegeName = collegeName;
     }
+}
 
-    generateNewId() {
+class CollegeServices {
+
+    // Add new college to the array
+    addCollege(college) {
+        const ifExist = this.isCollegeExist(college.collegeName);
+        
+        if (ifExist) {
+            console.log("this college is already exist");
+        } else {
+            college.collegeId = this.generateCollegeId();
+            universityList.push(college);
+        }
+    }
+
+    // Generate new Id foe college 
+    generateCollegeId() {
         if (universityList.length === 0) {
             return universityList.length;
         } else {
@@ -16,19 +31,6 @@ export class College {
             return Math.max(...ids) + 1;
         }
     } 
-}
-
-class CollegeServices {
-    // Add new college to the array
-    addCollege(college) {
-        const ifExist = this.isCollegeExist(college.collegeName);
-        
-        if (ifExist) {
-            console.log("this college is already exist");
-        } else {
-            universityList.push(college);
-        }
-    }
 
     // Update the name of specific college
     updateCollege(oldName, newName) {
