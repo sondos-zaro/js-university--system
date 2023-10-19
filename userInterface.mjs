@@ -27,18 +27,18 @@ class UserInterface {
                     this.displayCollegeMethods();
                     break;
                 case "2":
-                  // code block
-                  break;
-                  case "3":
-                  // code block
-                  break;
-                  case "4":
-                  // code block
-                  break;
+                    // code block
+                    break;
+                case "3":
+                    this.displayMajorMethods()
+                    break;
+                case "4":
+                    // code block
+                    break;
                 default:
-                  // code block
-              }
-          });
+                // code block
+            }
+        });
     }
 
     displayCollegeMethods() {
@@ -68,9 +68,9 @@ class UserInterface {
                     this.ifCollegeExist();
                     break;
                 default:
-              }
-          
-          });
+            }
+
+        });
     }
 
     addCollege() {
@@ -79,7 +79,7 @@ class UserInterface {
             const collegeService = new CollegeServices();
             collegeService.addCollege(college);
         });
-       
+
     }
 
     deleteCollege() {
@@ -117,7 +117,7 @@ class UserInterface {
         });
 
     }
-   
+
     displayMajorMethods() {
         console.log(`What the process do you want to perform?
         1- Add new major
@@ -130,7 +130,7 @@ class UserInterface {
 
     getMajorChoice() {
         rl.question('Enter Your Choice ', (choice) => {
-            switch(choice) {
+            switch (choice) {
                 case "1":
                     this.addMajor();
                     break;
@@ -145,21 +145,21 @@ class UserInterface {
                     break;
                 case "5":
                     this.getUserChoice();
-                    break;    
+                    break;
                 default: this.displaySelectList();
-              }
-          });
+            }
+        });
     }
 
     addMajor() {
-        rl.question('Enter college name', (collegeName) => {
-            rl.question('Enter major name', (majorName) => {
+        rl.question('Enter college name: ', (collegeName) => {
+            rl.question('Enter major name: ', (majorName) => {
                 const major = new Major(majorName);
                 const majorService = new MajorServices()
                 majorService.addMajor(collegeName, major);
-                this.displayMajorMethods(); 
+                this.displayMajorMethods();
             });
-        });         
+        });
     }
 
     deleteMajor() {
@@ -167,10 +167,10 @@ class UserInterface {
             rl.question('Enter major name', (majorName) => {
                 const majorService = new MajorServices()
                 majorService.deleteMajor(collegeName, majorName);
-                this.displayMajorMethods(); 
+                this.displayMajorMethods();
             });
-        });   
-        
+        });
+
     }
 
     updateMajor() {
@@ -178,18 +178,112 @@ class UserInterface {
             rl.question('Enter new name of major', (newName) => {
                 const majorService = new MajorServices()
                 majorService.updateMajorName(oldName, newName);
-                this.displayMajorMethods(); 
+                this.displayMajorMethods();
             });
-        });  
+        });
     }
 
     ifMajorExist() {
         rl.question('Enter major name', (majorName) => {
             const majorService = new MajorServices()
             majorService.isMajorExist(majorName);
-            this.displayMajorMethods(); 
-        });  
+            this.displayMajorMethods();
+        });
     }
+
+    displayMajorMethods() {
+        console.log(`What the process do you want to perform?
+        1- Add new course
+        2- Delete course 
+        3- Edit course Name
+        4- Edit course Hours
+        5- Edit course type
+        6- Edit course prerequisites
+        4- Check if course exists
+        5- Exit`);
+        this.getCourseChoice();
+    }
+
+    getCourseChoice() {
+        rl.question('Enter Your Choice ', (choice) => {
+            switch (choice) {
+                case "1":
+                    this.addCourse();
+                    break;
+                case "2":
+                    this.deleteCourse();
+                    break;
+                case "3":
+                    this.updateCourse();
+                    break;
+                case "4":
+                    this.ifCourseExist();
+                    break;
+                case "5":
+                    this.getUserChoice();
+                    break;
+                default: this.displaySelectList();
+            }
+        });
+    }
+
+    addCourse() {
+        const courseServices = new CourseServices()
+        rl.question('Enter major name: ', (majorName) => {
+            rl.question('Enter course name: ', (courseName) => {
+                rl.question('Enter course Hours: ', (numberOfHours) => {
+                    rl.question('Enter course type: ', (type) => {
+                        rl.question('Enter course prerequisites: ', (prerequisites) => {
+                            const course = new Course(courseName, numberOfHours, type, prerequisites);
+                            courseServices.addCourse(majorName, course);
+                            this.displayMajorMethods();
+                        })
+                    })
+
+                });
+            })
+        });
+    }
+
+    deleteCourse() {
+        const courseServices = new CourseServices()
+        rl.question('Enter major name: ', (majorName) => {
+            rl.question('Enter course name: ', (courseName) => {
+                courseServices.deleteCourse(majorName, courseName);
+                this.displayMajorMethods();
+            });
+        });
+
+    }
+
+    updateCourseName() {
+        rl.question('Enter the name of major do you want update', (oldName) => {
+            rl.question('Enter new name of major', (newName) => {
+                const majorService = new MajorServices()
+                majorService.updateMajorName(oldName, newName);
+                this.displayMajorMethods();
+            });
+        });
+    }
+
+    ifCourseExist() {
+        const courseServices = new CourseServices()
+        rl.question('Enter major name: ', (majorName) => {
+            rl.question('Enter course name: ', (courseName) => {
+                if (courseServices.isCourseExist(majorName, courseName)) {
+                    console.log(`The ${courseName} course is exist`)
+                }
+                else {
+                    console.log(`The ${courseName} course or ${majorName} major is not found`)
+                }
+                this.displayMajorMethods();
+            });
+        });
+    }
+
+
+
+
 }
 
 
