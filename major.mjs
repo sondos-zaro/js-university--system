@@ -24,12 +24,10 @@ export class MajorServices extends CollegeServices{
 
     
     generateMajorId(collegeIndex) {
-      
-
         if (universityList[collegeIndex].Major.length === 0) {
             return 0;
         }
-        const ids = universityList[collegeIndex].map((major) =>console.log(major));
+        const ids = universityList[collegeIndex].Major.map((major) => major.majorId);
 
         return Math.max(...ids) + 1;
     }
