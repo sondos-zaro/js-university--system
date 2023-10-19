@@ -41,6 +41,21 @@ class CourseService extends MajorService {
         return index;
     }
 
+    // Implement delete Course method
+    deleteCourse(majorName, courseName) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        const majorIndex = this.getMajorIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+        
+        console.log(universityList[collegeIndex].Major[majorIndex].course)
+        if (courseIndex != -1 && majorIndex != -1) {
+            universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
+            console.log(`The delete process was successful!`)
+        } else {
+            console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
+        }
+    }
+
     isCourseExist(majorName, courseName) {
         let majorIndex = this.getMajorIndex(majorName);
         let collegeIndex = this.getCollegeIndexForMajor(majorName);
@@ -62,8 +77,13 @@ class CourseService extends MajorService {
             const collegeIndex = this.getCollegeIndexForMajor(majorName);
             course.courseId = this.generateCourseId(majorName);
             universityList[collegeIndex].Major[majorIndex].course.push(course);
+            let courseIndex = universityList[collegeIndex].Major[majorIndex].course.map(course =>
+                course.courseName.toLowerCase()).includes(courseName.toLowerCase());
+            return courseIndex;
         } else {
         console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`); 
         }
     }
+
+
 }
