@@ -12,7 +12,7 @@ export class CollegeServices {
     // Add new college to the array
     addCollege(college) {
         const ifExist = this.isCollegeExist(college.collegeName);
-        
+
         if (ifExist) {
             console.log("this college is already exist");
         } else {
@@ -31,7 +31,7 @@ export class CollegeServices {
 
             return Math.max(...ids) + 1;
         }
-    } 
+    }
 
     // Update the name of specific college
     updateCollege(oldName, newName) {
@@ -41,16 +41,17 @@ export class CollegeServices {
             console.log("This college doesn't exit");
         } else {
             universityList[collegeIndex].collegeName = newName;
+            console.log("The college name has been successfully modified");
         }
     }
-    
+
     // Check if a specific exist
     isCollegeExist(collegeName) {
         if (typeof collegeName !== "string") {
             return;
         }
         let ifExist = universityList.find(college => college.collegeName.toLowerCase() === collegeName.toLowerCase());
-        
+
         return ifExist !== undefined ? true : false;
     }
 
@@ -67,10 +68,11 @@ export class CollegeServices {
     deleteCollege(collegeName) {
         const collegeIndex = this.getCollegeIndex(collegeName);
 
-        if(collegeIndex === -1) {
+        if (collegeIndex === -1) {
             console.log("This college doesn't exit");
         } else {
             universityList.splice(collegeIndex, 1);
+            console.log("The college has been deleted successfully");
         }
     }
 }

@@ -20,25 +20,25 @@ class UserInterface {
         this.getUserChoice();
     }
 
-    getUserChoice(){
+    getUserChoice() {
         rl.question('Enter Your Choice ', (choice) => {
-            switch(choice) {
+            switch (choice) {
                 case "1":
                     this.displayCollegeMethods()
                     break;
                 case "2":
-                  // code block
-                  break;
-                  case "3":
-                  // code block
-                  break;
-                  case "4":
-                  // code block
-                  break;
+                    // code block
+                    break;
+                case "3":
+                    // code block
+                    break;
+                case "4":
+                    // code block
+                    break;
                 default:
-                  // code block
-              }
-          });
+                // code block
+            }
+        });
     }
 
     displayCollegeMethods() {
@@ -52,9 +52,10 @@ class UserInterface {
 
     getCollegeChoice() {
         rl.question('Enter Your Choice ', (choice) => {
-            switch(choice) {
+            switch (choice) {
                 case "1":
                     this.addCollege();
+                    this.displaySelectList();
                     break;
                 case "2":
                     this.deleteCollege();
@@ -66,29 +67,53 @@ class UserInterface {
                     this.ifCollegeExist()
                     break;
                 default:
-              }
-          
-          });
+            }
+
+        });
     }
-    
+
     addCollege() {
-        rl.question('Enter college name', (collegeName) => {
+        rl.question('Enter college name: ', (collegeName) => {
             const college = new College(collegeName);
             const collegeService = new CollegeServices();
             collegeService.addCollege(college);
+            this.displayCollegeMethods()
         });
-       
     }
 
     deleteCollege() {
-        
+        const collegeService = new CollegeServices();
+
+        rl.question('Enter What college name do you want to remove: ', (collegeName) => {
+            collegeService.deleteCollege(collegeName);
+            this.displaySelectList()
+        });
     }
 
     updateCollege() {
+        const collegeService = new CollegeServices();
 
+        rl.question('Enter old name: ', (oldName) => {
+            rl.question('Enter new name: ', (newName) => {
+                collegeService.updateCollege(oldName, newName);
+                this.displaySelectList()
+            })
+        });
     }
 
     ifCollegeExist() {
+        const collegeService = new CollegeServices();
+
+        rl.question('Enter the name of the college you want to check for: ', (collegeName) => {
+            if (collegeService.isCollegeExist(collegeName)) {
+                console.log(`The ${collegeName} college is exist`)
+            }
+            else {
+                console.log(`The ${collegeName} college is not found in the university list`)
+            }
+
+            this.displaySelectList()
+        });
 
     }
 
@@ -97,3 +122,4 @@ class UserInterface {
 
 let i = new UserInterface();
 i.displaySelectList();
+
