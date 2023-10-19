@@ -7,7 +7,7 @@ export class College {
     }
 }
 
-class CollegeServices {
+export class CollegeServices {
 
     // Add new college to the array
     addCollege(college) {
@@ -21,7 +21,7 @@ class CollegeServices {
         }
     }
 
-    // Generate new Id foe college 
+    // Generate new Id for college 
     generateCollegeId() {
         if (universityList.length === 0) {
             return universityList.length;

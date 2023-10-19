@@ -1,4 +1,4 @@
-import { College, CollegeServices} from "./college.mjs";
+import { CollegeServices} from "./college.mjs";
 import { universityList } from "./utils/university.mjs";
 
 export class Major {
@@ -28,14 +28,7 @@ export class MajorService extends CollegeServices{
             return 0;
         }
 
-        universityList[collegeIndex].Major.forEach(major =>
-            ids.push(major.majorId)
-            )
-        // universityList.forEach(element => {
-        //     element.Major.forEach(element => {
-        //         ids.push(element.majorId);
-        //     });
-        // });
+        universityList[collegeIndex].Major.forEach(major => ids.push(major.majorId));
 
         return Math.max(...ids) + 1;
     }
@@ -88,3 +81,5 @@ export class MajorService extends CollegeServices{
         return collegeIndex; 
     }
 }
+
+
