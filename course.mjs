@@ -54,8 +54,6 @@ class CourseService extends MajorService {
         } else {
             console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
         }
-
-        console.log(universityList[collegeIndex].Major[majorIndex].course)
     }
 
     isCourseExist(majorName, courseName) {
@@ -89,7 +87,3 @@ class CourseService extends MajorService {
 
 
 }
-
-const s = new CourseService();
-
-s.deleteCourse("UC","data structue")
