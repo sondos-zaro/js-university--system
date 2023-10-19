@@ -29,9 +29,7 @@ export class MajorService extends CollegeServices{
             return 0;
         }
 
-        universityList[collegeIndex].Major.forEach(major =>
-            ids.push(major.majorId)
-            )
+        universityList[collegeIndex].Major.forEach(major => ids.push(major.majorId));
         return Math.max(...ids) + 1;
     }
 
@@ -97,3 +95,7 @@ export class MajorService extends CollegeServices{
         return universityList[collegeIndex].collegeName; 
     }    
 }
+
+
+let ms= new MajorService();
+console.log(ms.getCollegeNameForMajor("UC"))

@@ -1,8 +1,6 @@
 import { MajorService } from "./major.mjs";
 import { universityList } from "./utils/university.mjs";
 
-
-
 export class Course {
 
     constructor(courseName, numberOfHours, type, prerequisites) {
@@ -32,7 +30,7 @@ class CourseService extends MajorService {
 
     // get index by major name
     getCourseIndex(majorName, courseName) {
-        const majorIndex = this.getMajorIndex(majorName)
+        const majorIndex = this.getMajorIndex(majorName);
         let index = -1;
 
         if (majorIndex !== -1) {
