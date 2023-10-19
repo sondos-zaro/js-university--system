@@ -83,7 +83,7 @@ export class MajorService extends CollegeServices{
             return college.Major.map(major => major.majorName).includes(majorName);
             });
 
-        return collegeIndex; 
+        return collegeIndex;
     }
 
     // Get the name of college for specific major
@@ -95,7 +95,3 @@ export class MajorService extends CollegeServices{
         return universityList[collegeIndex].collegeName; 
     }    
 }
-
-
-let ms= new MajorService();
-console.log(ms.getCollegeNameForMajor("UC"))
