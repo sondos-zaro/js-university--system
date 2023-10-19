@@ -33,7 +33,7 @@ const majorService = new MajorServices();
 majorService.addMajor("College of Engineering", major);
 
 // Delete major from college;
-//majorService.deleteMajor("College of Information Technologies", "IT");
+majorService.deleteMajor("College of Information Technologies", "IT");
 
 // Update specific major
 majorService.updateMajorName("IT", "Architecture Engineering");
@@ -41,6 +41,6 @@ majorService.updateMajorName("IT", "Architecture Engineering");
 // Check if a specific major exist 
 console.log(majorService.isMajorExist("Architecture Engineering"));
 
-// Print the university list after updates
-console.log(universityList); 
+// Print the majors after updates
+universityList.forEach(college => console.log(college.Major));
 
