@@ -41,12 +41,29 @@ class CourseService extends MajorService {
         return index;
     }
 
+    // Implement Edit Course method
+    updateCourse(majorName, courseName, numberOfHours, type, prerequisites) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        const majorIndex = this.getIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+
+        if (courseIndex != -1 && majorIndex != -1) {
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].numberOfHours = numberOfHours;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].courseName = courseName;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].type = type;
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].prerequisites = prerequisites;
+            console.log(`The edit process was successful!`)
+        } else {
+            console.log(`The edit process failed`)
+        }
+    }
+
     // Implement delete Course method
     deleteCourse(majorName, courseName) {
         const collegeIndex = this.getCollegeIndexForMajor(majorName);
         const majorIndex = this.getMajorIndex(majorName);
         const courseIndex = this.getCourseIndex(majorName, courseName);
-        
+
         console.log(universityList[collegeIndex].Major[majorIndex].course)
         if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
@@ -61,15 +78,15 @@ class CourseService extends MajorService {
         let collegeIndex = this.getCollegeIndexForMajor(majorName);
         let ifExist;
         if (majorIndex !== -1) {
-            ifExist = universityList[collegeIndex].Major[majorIndex].course.find(course => course.courseName.toLowerCase() === courseName.toLowerCase()); 
+            ifExist = universityList[collegeIndex].Major[majorIndex].course.find(course => course.courseName.toLowerCase() === courseName.toLowerCase());
         } else {
-            console.log(`There is no major in this name: ${majorName}!`); 
+            console.log(`There is no major in this name: ${majorName}!`);
             ifExist = undefined;
         }
-        
+
         return ifExist !== undefined ? true : false;
     }
-   
+
     addCourse(majorName, course) {
         const majorIndex = this.getMajorIndex(majorName);
 
@@ -81,7 +98,7 @@ class CourseService extends MajorService {
                 course.courseName.toLowerCase()).includes(courseName.toLowerCase());
             return courseIndex;
         } else {
-        console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`); 
+            console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`);
         }
     }
 
