@@ -17,6 +17,7 @@ export class CollegeServices {
             console.log("this college is already exist");
         } else {
             college.collegeId = this.generateCollegeId();
+            college.Major = [];
             universityList.push(college);
         }
     }

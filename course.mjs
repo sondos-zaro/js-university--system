@@ -1,4 +1,4 @@
-import { MajorService } from "./major.mjs";
+import { MajorServices } from "./major.mjs";
 import { universityList } from "./utils/university.mjs";
 
 export class Course {
@@ -12,19 +12,19 @@ export class Course {
 
 }
 
-class CourseService extends MajorService {
+export class CourseServices extends MajorServices {
 
     generateCourseId(majorName) {
         const majorIndex = this.getMajorIndex(majorName);
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
 
-        if (majorIndex !== -1) {
-            const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        if (universityList[collegeIndex].Major[majorIndex].course.length === 0) 
+        {    
+            return 0;
+        } else {    
             const ids = universityList[collegeIndex].Major[majorIndex].course.map((course) => course.courseId);
 
             return Math.max(...ids) + 1;
-        }
-        else {
-            return -1;
         }
     }
 
@@ -52,9 +52,9 @@ class CourseService extends MajorService {
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].courseName = courseName;
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].type = type;
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].prerequisites = prerequisites;
-            console.log(`The edit process was successful!`)
+            console.log(`The edit process was successful!`);
         } else {
-            console.log(`The edit process failed`)
+            console.log(`The edit process failed`);
         }
     }
 
@@ -94,13 +94,8 @@ class CourseService extends MajorService {
             const collegeIndex = this.getCollegeIndexForMajor(majorName);
             course.courseId = this.generateCourseId(majorName);
             universityList[collegeIndex].Major[majorIndex].course.push(course);
-            let courseIndex = universityList[collegeIndex].Major[majorIndex].course.map(course =>
-                course.courseName.toLowerCase()).includes(courseName.toLowerCase());
-            return courseIndex;
         } else {
-            console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`);
+        console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`); 
         }
     }
-
-
 }
