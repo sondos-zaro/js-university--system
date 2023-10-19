@@ -8,14 +8,15 @@ export class Major {
     }
 }
 
-export class MajorService extends CollegeServices{
+export class MajorServices extends CollegeServices{
     
     // Implement add major method
     addMajor(collegeName, major) {
         const collegeIndex = this.getCollegeIndex(collegeName);
-
+        
         if (collegeIndex !== -1) {
             major.majorId = this.generateMajorId(collegeIndex)
+            major.course = [];
             universityList[collegeIndex].Major.push(major);
         } else
         console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
@@ -23,13 +24,13 @@ export class MajorService extends CollegeServices{
 
     
     generateMajorId(collegeIndex) {
-        const ids = [];
+      
 
-        if (universityList.length === 0) {
+        if (universityList[collegeIndex].Major.length === 0) {
             return 0;
         }
+        const ids = universityList[collegeIndex].map((major) =>console.log(major));
 
-        universityList[collegeIndex].Major.forEach(major => ids.push(major.majorId));
         return Math.max(...ids) + 1;
     }
 
@@ -42,7 +43,7 @@ export class MajorService extends CollegeServices{
             universityList[collegeIndex].Major.splice(majorIndex, 1);
             console.log(`The delete process was successful!`);
         } else {
-            console.log(`The delete process was not successful, There is no major in this name: ${majorIndex}!, or no college in this name ${collegeIndex}`);
+            console.log(`The delete process was not successful, There is no major in this name: ${majorName}!, or no college in this name ${collegeName}`);
         }
     }
     
@@ -55,7 +56,7 @@ export class MajorService extends CollegeServices{
     // Edit major name method
     updateMajorName(oldName, newName) {
         const majorIndex = this.getMajorIndex(oldName);
-        const collegeIndex = this.getCollegeIndex(collegeName);
+        const collegeIndex = this.getCollegeIndexForMajor(oldName);
 
         if (majorIndex !== -1 && collegeIndex !== -1) {
             universityList[collegeIndex].Major[majorIndex].majorName = newName;
