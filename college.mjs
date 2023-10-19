@@ -58,7 +58,7 @@ export class CollegeServices {
             return;
         }
 
-        return universityList.findIndex(college => collegeName === college.collegeName);
+        return universityList.findIndex(college => collegeName.toLocaleLowerCase() === college.collegeName.toLocaleLowerCase());
     }
 
     // Delete college
