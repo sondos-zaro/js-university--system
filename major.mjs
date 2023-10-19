@@ -37,7 +37,7 @@ export class MajorService extends CollegeServices{
 
     // Implement delete major method
     deleteMajor(collegeName, majorName) {
-        const majorIndex = this.getMajorIndex(collegeName, majorName);
+        const majorIndex = this.getMajorIndex(majorName);
         const collegeIndex = this.getCollegeIndex(collegeName);
 
         if (majorIndex !== -1 && collegeIndex !== -1) {
@@ -49,14 +49,14 @@ export class MajorService extends CollegeServices{
     }
     
     // Check if major exists
-    isMajorExist(collegeName, majorName) {
-        return this.getMajorIndex(collegeName, majorName) != -1 ? true : false;
+    isMajorExist(majorName) {
+        return this.getMajorIndex(majorName) != -1 ? true : false;
     }
 
 
     // Edit major name method
-    updateMajorName(collegeName, oldName, newName) {
-        const majorIndex = this.getMajorIndex(collegeName, oldName);
+    updateMajorName(oldName, newName) {
+        const majorIndex = this.getMajorIndex(oldName);
         const collegeIndex = this.getCollegeIndex(collegeName);
 
         if (majorIndex !== -1 && collegeIndex !== -1) {
@@ -68,8 +68,8 @@ export class MajorService extends CollegeServices{
     }
 
     // get index by major name
-    getMajorIndex(collegeName, majorName) {
-        const collegeIndex = this.getCollegeIndex(collegeName);
+    getMajorIndex(majorName) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
         let index = -1;
 
         if (collegeIndex !== -1) {
@@ -81,10 +81,19 @@ export class MajorService extends CollegeServices{
 
     // Get the index of college for specific major
     getCollegeIndexForMajor(majorName) {
-        let collegeIndex = universityList.findIndex( (college) => {
-            return college.Major.map(major => major.majorName.toLowerCase()).includes(majorName.toLowerCase());
+        let collegeIndex = universityList.findIndex( college => {
+            return college.Major.map(major => major.majorName).includes(majorName);
             });
 
         return collegeIndex; 
     }
+
+    // Get the name of college for specific major
+    getCollegeNameForMajor(majorName) {
+        let collegeIndex = universityList.findIndex( (college) => {
+            return college.Major.map(major => major.majorName.toLowerCase()).includes(majorName.toLowerCase());
+            });
+
+        return universityList[collegeIndex].collegeName; 
+    }    
 }

@@ -48,8 +48,9 @@ export class CollegeServices {
         if (typeof collegeName !== "string") {
             return;
         }
-
-        return universityList.map(college => college.collegeName.toLowerCase()).includes(collegeName.toLowerCase());
+        let ifExist = universityList.find(college => college.collegeName.toLowerCase() === collegeName.toLowerCase());
+        
+        return ifExist !== undefined ? true : false;
     }
 
     // Get an index for a specific college
