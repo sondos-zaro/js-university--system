@@ -26,11 +26,14 @@ console.log(courseService.isCourseExist("UC", "data structue"))
 courseService.deleteCourse("UC", "data structue")
 
 // Editing a specific course in university list
-courseService.updateCourse("ac", "data structue", "Data Structure", 5, "University Requirement", "none")
+courseService.updateCourseName("ac", "data structue", "Data Structure")
+courseService.updateCourseHours("ac", "data structue", 5)
+courseService.updateCourseType("ac", "data structue", "University Requirement")
+courseService.updateCoursePrerequisites("ac", "data structue", "none")
 
 // Print all courses in university list
 universityList.forEach(element => {
-    element.Major.forEach(element=>console.log(element.course))
+    element.Major.forEach(element => console.log(element.course))
 });
 
 // Test College Service 
@@ -44,13 +47,13 @@ collegeService.addCollege(college);
 collegeService.deleteCollege("AU College");
 
 // Update specific college
-collegeService.updateCollege("IT college","College of Information Technologies");
+collegeService.updateCollege("IT college", "College of Information Technologies");
 
 // Check if a specific college exist 
 console.log(collegeService.isCollegeExist("IT College"));
 
 // Print the university list after updates
-console.log(universityList); 
+console.log(universityList);
 
 //Test Major Service  
 const major = new Major("College of Architecture");

@@ -191,7 +191,7 @@ class UserInterface {
         });
     }
 
-    displayMajorMethods() {
+    displayCourseMethods() {
         console.log(`What the process do you want to perform?
         1- Add new course
         2- Delete course 
@@ -199,8 +199,8 @@ class UserInterface {
         4- Edit course Hours
         5- Edit course type
         6- Edit course prerequisites
-        4- Check if course exists
-        5- Exit`);
+        7- Check if course exists
+        8- Exit`);
         this.getCourseChoice();
     }
 
@@ -214,12 +214,21 @@ class UserInterface {
                     this.deleteCourse();
                     break;
                 case "3":
-                    this.updateCourse();
+                    this.updateCourseName();
                     break;
                 case "4":
-                    this.ifCourseExist();
+                    this.updateCourseHours();
                     break;
                 case "5":
+                    this.updateCourseType();
+                    break;
+                case "6":
+                    this.updateCoursePrerequisites();
+                    break;
+                case "7":
+                    this.ifCourseExist();
+                    break;
+                case "8":
                     this.getUserChoice();
                     break;
                 default: this.displaySelectList();
@@ -236,7 +245,7 @@ class UserInterface {
                         rl.question('Enter course prerequisites: ', (prerequisites) => {
                             const course = new Course(courseName, numberOfHours, type, prerequisites);
                             courseServices.addCourse(majorName, course);
-                            this.displayMajorMethods();
+                            this.displayCourseMethods();
                         })
                     })
 
@@ -250,18 +259,56 @@ class UserInterface {
         rl.question('Enter major name: ', (majorName) => {
             rl.question('Enter course name: ', (courseName) => {
                 courseServices.deleteCourse(majorName, courseName);
-                this.displayMajorMethods();
+                this.displayCourseMethods();
             });
         });
 
     }
 
     updateCourseName() {
-        rl.question('Enter the name of major do you want update', (oldName) => {
-            rl.question('Enter new name of major', (newName) => {
-                const majorService = new MajorServices()
-                majorService.updateMajorName(oldName, newName);
-                this.displayMajorMethods();
+        const courseServices = new CourseServices()
+        rl.question('Enter the name of major do you want update', (majorName) => {
+            rl.question('Enter old course name', (oldName) => {
+                rl.question('Enter new name of course', (newName) => {
+                    courseServices.updateCourseName(majorName, oldName, newName);
+                    this.displayCourseMethods();
+                });
+            });
+        });
+    }
+
+    updateCourseHours() {
+        const courseServices = new CourseServices()
+        rl.question('Enter the name of major do you want update', (majorName) => {
+            rl.question('Enter name of course', (courseName) => {
+                rl.question('Enter number of course hours method', (numberOfHours) => {
+                    courseServices.updateCourseName(majorName, courseName, numberOfHours);
+                    this.displayCourseMethods();
+                });
+            });
+        });
+    }
+
+    updateCourseType() {
+        const courseServices = new CourseServices()
+        rl.question('Enter the name of major do you want update', (majorName) => {
+            rl.question('Enter name of course', (courseName) => {
+                rl.question('Enter type of course', (type) => {
+                    courseServices.updateCourseName(majorName, courseName, type);
+                    this.displayCourseMethods();
+                });
+            });
+        });
+    }
+
+    updateCoursePrerequisites() {
+        const courseServices = new CourseServices()
+        rl.question('Enter the name of major do you want update', (majorName) => {
+            rl.question('Enter name of course', (courseName) => {
+                rl.question('Enter course prerequisites  of course', (prerequisites) => {
+                    courseServices.updateCourseName(majorName, courseName, prerequisites);
+                    this.displayCourseMethods();
+                });
             });
         });
     }
@@ -276,7 +323,7 @@ class UserInterface {
                 else {
                     console.log(`The ${courseName} course or ${majorName} major is not found`)
                 }
-                this.displayMajorMethods();
+                this.displayCourseMethods();
             });
         });
     }

@@ -83,7 +83,7 @@ export class CourseServices extends MajorServices {
     }
 
     // Implement Edit Course prerequisites method
-    updateCoursePrerequisites(majorName, courseName, type) {
+    updateCoursePrerequisites(majorName, courseName, prerequisites) {
         const collegeIndex = this.getCollegeIndexForMajor(majorName);
         const majorIndex = this.getMajorIndex(majorName);
         const courseIndex = this.getCourseIndex(majorName, courseName);
