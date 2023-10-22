@@ -12,13 +12,14 @@ export class CollegeServices {
     // Add new college to the array
     addCollege(college) {
         const ifExist = this.isCollegeExist(college.collegeName);
-        
+
         if (ifExist) {
-            console.log("this college is already exist");
+            console.log("this college is already exist, you can't add it again");
         } else {
             college.collegeId = this.generateCollegeId();
             college.Major = [];
             universityList.push(college);
+            console.log("the add college process successful");
         }
     }
 
@@ -31,27 +32,32 @@ export class CollegeServices {
 
             return Math.max(...ids) + 1;
         }
-    } 
+    }
 
     // Update the name of specific college
     updateCollege(oldName, newName) {
         const collegeIndex = this.getCollegeIndex(oldName);
 
         if (collegeIndex === -1) {
-            console.log("This college doesn't exit");
+            console.log(`There is no college in this name: ${oldName}`);
         } else {
             universityList[collegeIndex].collegeName = newName;
+            console.log(`The college name has been successfully modified to: ${newName}`);
         }
     }
-    
+
     // Check if a specific exist
     isCollegeExist(collegeName) {
         if (typeof collegeName !== "string") {
             return;
         }
         let ifExist = universityList.find(college => college.collegeName.toLowerCase() === collegeName.toLowerCase());
-        
-        return ifExist !== undefined ? true : false;
+
+        if (ifExist !== undefined ) {
+            console.log(`This college: ${collegeName} exists`);
+        } else {
+            console.log(`There is no college in this name: ${collegeName}`);
+        }
     }
 
     // Get an index for a specific college
@@ -67,10 +73,11 @@ export class CollegeServices {
     deleteCollege(collegeName) {
         const collegeIndex = this.getCollegeIndex(collegeName);
 
-        if(collegeIndex === -1) {
+        if (collegeIndex === -1) {
             console.log("This college doesn't exit");
         } else {
             universityList.splice(collegeIndex, 1);
+            console.log("The college has been deleted successfully");
         }
     }
 }

@@ -1,18 +1,59 @@
 export let universityList = [
   {
     collegeId: 1,
-    collegeName: "IT college",
+    collegeName: "Information Technology and Computer Engineering",
     Major: [
       {
         majorId: 1,
-        majorName: "IT",
+        majorName: "Computer Science",
         course: [
           {
             courseId: 1,
-            courseName: "data structue",
+            courseName: "Data structure",
             numberOfHours: 3,
-            type: "college requirments",
-            prerequisites: "oob",
+            type: "college requirements",
+            prerequisites: "None",
+          },
+          {
+            courseId: 2,
+            courseName: "Programming basics",
+            numberOfHours: 3,
+            type: "college requirements",
+            prerequisites: "None",
+          },
+          {
+            courseId: 3,
+            courseName: "Advanced programming",
+            numberOfHours: 3,
+            type: "college requirements",
+            prerequisites: "Programming basics",
+          },
+        ],
+      },
+      {
+        majorId: 1,
+        majorName: "Computer System Engineering",
+        course: [
+          {
+            courseId: 1,
+            courseName: "Microprocessor",
+            numberOfHours: 3,
+            type: "Major requirements",
+            prerequisites: "None",
+          },
+          {
+            courseId: 2,
+            courseName: "Information Systems",
+            numberOfHours: 3,
+            type: "college requirements",
+            prerequisites: "None",
+          },
+          {
+            courseId: 3,
+            courseName: "Engineering mathematics",
+            numberOfHours: 3,
+            type: "Major requirements",
+            prerequisites: "Differential",
           },
         ],
       },
@@ -20,31 +61,31 @@ export let universityList = [
   },
   {
     collegeId: 2,
-    collegeName: "AU college",
+    collegeName: "Medicine and Health Sciences",
     Major: [
       {
         majorId: 1,
-        majorName: "UC",
+        majorName: "Human Medicine Specialty",
         course: [
           {
             courseId: 1,
-            courseName: "data structue",
-            numberOfHours: 3,
-            type: "college requirments",
-            prerequisites: "oob",
+            courseName: "Anatomy",
+            numberOfHours: 6,
+            type: "college requirements",
+            prerequisites: "None",
           },
         ],
       },
       {
         majorId: 2,
-        majorName: "ac",
+        majorName: "Healthy and Therapeutic Nutrition",
         course: [
           {
             courseId: 1,
-            courseName: "data structue",
+            courseName: "Psychology",
             numberOfHours: 3,
-            type: "college requirments",
-            prerequisites: "oob",
+            type: "Optional",
+            prerequisites: "None",
           },
         ],
       },

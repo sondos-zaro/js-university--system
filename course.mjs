@@ -18,10 +18,9 @@ export class CourseServices extends MajorServices {
         const majorIndex = this.getMajorIndex(majorName);
         const collegeIndex = this.getCollegeIndexForMajor(majorName);
 
-        if (universityList[collegeIndex].Major[majorIndex].course.length === 0) 
-        {    
+        if (universityList[collegeIndex].Major[majorIndex].course.length === 0) {
             return 0;
-        } else {    
+        } else {
             const ids = universityList[collegeIndex].Major[majorIndex].course.map((course) => course.courseId);
 
             return Math.max(...ids) + 1;
@@ -41,18 +40,57 @@ export class CourseServices extends MajorServices {
         return index;
     }
 
-    // Implement Edit Course method
-    updateCourse(majorName, courseName, numberOfHours, type, prerequisites) {
+    // Implement Edit Course name method
+    updateCourseName(majorName, oldName, newName) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        const majorIndex = this.getMajorIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, oldName);
+
+        if (courseIndex != -1 && majorIndex != -1) {
+            universityList[collegeIndex].Major[majorIndex].course[courseIndex].courseName = newName;
+            console.log(`The course name has been changed from ${oldName} to ${newName}`);
+        } else {
+            console.log(`The edit process failed`);
+        }
+    }
+
+    // Implement Edit Course hours method
+    updateCourseHours(majorName, courseName, numberOfHours) {
         const collegeIndex = this.getCollegeIndexForMajor(majorName);
         const majorIndex = this.getMajorIndex(majorName);
         const courseIndex = this.getCourseIndex(majorName, courseName);
 
         if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].numberOfHours = numberOfHours;
-            universityList[collegeIndex].Major[majorIndex].course[courseIndex].courseName = courseName;
+            console.log(`Course hours have been changed to ${numberOfHours}`);
+        } else {
+            console.log(`The edit process failed`);
+        }
+    }
+
+    // Implement Edit Course type method
+    updateCourseType(majorName, courseName, type) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        const majorIndex = this.getMajorIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+
+        if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].type = type;
+            console.log(`Course type have been changed to ${type}`);
+        } else {
+            console.log(`The edit process failed`);
+        }
+    }
+
+    // Implement Edit Course prerequisites method
+    updateCoursePrerequisites(majorName, courseName, prerequisites) {
+        const collegeIndex = this.getCollegeIndexForMajor(majorName);
+        const majorIndex = this.getMajorIndex(majorName);
+        const courseIndex = this.getCourseIndex(majorName, courseName);
+
+        if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course[courseIndex].prerequisites = prerequisites;
-            console.log(`The edit process was successful!`);
+            console.log(`Course prerequisites have been changed to ${prerequisites}`);
         } else {
             console.log(`The edit process failed`);
         }
@@ -66,9 +104,9 @@ export class CourseServices extends MajorServices {
 
         if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
-            console.log(`The delete process was successful!`)
+            console.log(`The delete process was successful!`);
         } else {
-            console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
+            console.log(`The delete process was not successful, There is no course in this name: ${courseName}, or na major in this name: ${majorName}!`);
         }
 
     }
@@ -84,7 +122,11 @@ export class CourseServices extends MajorServices {
             ifExist = undefined;
         }
 
-        return ifExist !== undefined ? true : false;
+        if (ifExist !== undefined ) {
+            console.log(`This course: ${courseName} exists`);
+        } else {
+            console.log(`There is no course in this name: ${courseName}`);
+        }
     }
 
     addCourse(majorName, course) {
@@ -94,8 +136,9 @@ export class CourseServices extends MajorServices {
             const collegeIndex = this.getCollegeIndexForMajor(majorName);
             course.courseId = this.generateCourseId(majorName);
             universityList[collegeIndex].Major[majorIndex].course.push(course);
+            console.log(`The course has been added successfully`);
         } else {
-        console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`); 
+            console.log(`The addition process was not successful, There is no major in this name: ${majorName}!`);
         }
     }
 }
