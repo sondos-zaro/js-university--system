@@ -15,9 +15,10 @@ export class MajorServices extends CollegeServices{
         const collegeIndex = this.getCollegeIndex(collegeName);
         
         if (collegeIndex !== -1) {
-            major.majorId = this.generateMajorId(collegeIndex)
+            major.majorId = this.generateMajorId(collegeIndex);
             major.course = [];
             universityList[collegeIndex].Major.push(major);
+            console.log("The add major process successful");
         } else
         console.log(`The addition process was not successful, There is no college in this name: ${collegeName}!`);
     }
@@ -47,7 +48,11 @@ export class MajorServices extends CollegeServices{
     
     // Check if major exists
     isMajorExist(majorName) {
-        return this.getMajorIndex(majorName) != -1 ? true : false;
+        if (this.getMajorIndex(majorName) != -1 ) {
+            console.log(`This major: ${majorName} exists`);
+        } else {
+            console.log(`There is no major in this name: ${majorName}`);
+        }
     }
 
 
@@ -58,7 +63,7 @@ export class MajorServices extends CollegeServices{
 
         if (majorIndex !== -1 && collegeIndex !== -1) {
             universityList[collegeIndex].Major[majorIndex].majorName = newName;
-            console.log(`The name has been successfully changed`);
+            console.log(`The name has been successfully changed to: ${newName}`);
         } else {
             console.log(`The Edit process was not successful, There is no major in this name: ${oldName}!`);
         }
@@ -80,7 +85,7 @@ export class MajorServices extends CollegeServices{
     getCollegeIndexForMajor(majorName) {
         let collegeIndex = universityList.findIndex( college => {
             return college.Major.map(major => major.majorName).includes(majorName);
-            });
+        });
 
         return collegeIndex;
     }
@@ -89,7 +94,7 @@ export class MajorServices extends CollegeServices{
     getCollegeNameForMajor(majorName) {
         let collegeIndex = universityList.findIndex( (college) => {
             return college.Major.map(major => major.majorName.toLowerCase()).includes(majorName.toLowerCase());
-            });
+        });
 
         return universityList[collegeIndex].collegeName; 
     }    

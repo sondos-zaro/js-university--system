@@ -27,18 +27,16 @@ class UserInterface {
                     this.displayCollegeMethods();
                     break;
                 case "2":
-                    this.displayMajorMethods()
-                    // code block
+                    this.displayMajorMethods();
                     break;
                 case "3":
-                    this.displayCourseMethods()
+                    this.displayCourseMethods();
                     break;
                 case "4":
-                    // code block
+                    rl.close();                
                     break;
-                default:
-                // code block
-            }
+                default: this.displaySelectList();
+                }
         });
     }
 
@@ -57,7 +55,6 @@ class UserInterface {
             switch (choice) {
                 case "1":
                     this.addCollege();
-                    this.displaySelectList();
                     break;
                 case "2":
                     this.deleteCollege();
@@ -68,8 +65,8 @@ class UserInterface {
                 case "4":
                     this.ifCollegeExist();
                     break;
-                default:
-            }
+                default: this.displaySelectList();
+                }
 
         });
     }
@@ -230,7 +227,7 @@ class UserInterface {
                     this.ifCourseExist();
                     break;
                 case "8":
-                    this.getUserChoice();
+                    this.displaySelectList();
                     break;
                 default: this.displaySelectList();
             }
