@@ -27,9 +27,9 @@ courseService.deleteCourse("UC", "data structue")
 
 // Editing a specific course in university list
 courseService.updateCourseName("ac", "data structue", "Data Structure")
-courseService.updateCourseHours("ac", "data structue", 5)
-courseService.updateCourseType("ac", "data structue", "University Requirement")
-courseService.updateCoursePrerequisites("ac", "data structue", "none")
+courseService.updateCourseHours("ac", "Data Structure", 5)
+courseService.updateCourseType("ac", "Data Structure", "University Requirement")
+courseService.updateCoursePrerequisites("ac", "Data Structure", "none")
 
 // Print all courses in university list
 universityList.forEach(element => {

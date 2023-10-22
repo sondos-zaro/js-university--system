@@ -27,10 +27,11 @@ class UserInterface {
                     this.displayCollegeMethods();
                     break;
                 case "2":
+                    this.displayMajorMethods()
                     // code block
                     break;
                 case "3":
-                    this.displayMajorMethods()
+                    this.displayCourseMethods()
                     break;
                 case "4":
                     // code block
@@ -163,8 +164,8 @@ class UserInterface {
     }
 
     deleteMajor() {
-        rl.question('Enter college name', (collegeName) => {
-            rl.question('Enter major name', (majorName) => {
+        rl.question('Enter college name: ', (collegeName) => {
+            rl.question('Enter major name: ', (majorName) => {
                 const majorService = new MajorServices()
                 majorService.deleteMajor(collegeName, majorName);
                 this.displayMajorMethods();
@@ -174,7 +175,7 @@ class UserInterface {
     }
 
     updateMajor() {
-        rl.question('Enter the name of major do you want update', (oldName) => {
+        rl.question('Enter the name of major do you want update: ', (oldName) => {
             rl.question('Enter new name of major', (newName) => {
                 const majorService = new MajorServices()
                 majorService.updateMajorName(oldName, newName);
@@ -184,7 +185,7 @@ class UserInterface {
     }
 
     ifMajorExist() {
-        rl.question('Enter major name', (majorName) => {
+        rl.question('Enter major name: ', (majorName) => {
             const majorService = new MajorServices()
             majorService.isMajorExist(majorName);
             this.displayMajorMethods();
@@ -205,7 +206,7 @@ class UserInterface {
     }
 
     getCourseChoice() {
-        rl.question('Enter Your Choice ', (choice) => {
+        rl.question('Enter Your Choice: ', (choice) => {
             switch (choice) {
                 case "1":
                     this.addCourse();
@@ -267,9 +268,9 @@ class UserInterface {
 
     updateCourseName() {
         const courseServices = new CourseServices()
-        rl.question('Enter the name of major do you want update', (majorName) => {
-            rl.question('Enter old course name', (oldName) => {
-                rl.question('Enter new name of course', (newName) => {
+        rl.question('Enter the name of major do you want update: ', (majorName) => {
+            rl.question('Enter old course name: ', (oldName) => {
+                rl.question('Enter new name of course: ', (newName) => {
                     courseServices.updateCourseName(majorName, oldName, newName);
                     this.displayCourseMethods();
                 });
@@ -279,10 +280,10 @@ class UserInterface {
 
     updateCourseHours() {
         const courseServices = new CourseServices()
-        rl.question('Enter the name of major do you want update', (majorName) => {
-            rl.question('Enter name of course', (courseName) => {
-                rl.question('Enter number of course hours method', (numberOfHours) => {
-                    courseServices.updateCourseName(majorName, courseName, numberOfHours);
+        rl.question('Enter the name of major do you want update: ', (majorName) => {
+            rl.question('Enter name of course: ', (courseName) => {
+                rl.question('Enter number of course hours method: ', (numberOfHours) => {
+                    courseServices.updateCourseHours(majorName, courseName, numberOfHours);
                     this.displayCourseMethods();
                 });
             });
@@ -291,10 +292,10 @@ class UserInterface {
 
     updateCourseType() {
         const courseServices = new CourseServices()
-        rl.question('Enter the name of major do you want update', (majorName) => {
-            rl.question('Enter name of course', (courseName) => {
-                rl.question('Enter type of course', (type) => {
-                    courseServices.updateCourseName(majorName, courseName, type);
+        rl.question('Enter the name of major do you want update: ', (majorName) => {
+            rl.question('Enter name of course: ', (courseName) => {
+                rl.question('Enter type of course: ', (type) => {
+                    courseServices.updateCourseType(majorName, courseName, type);
                     this.displayCourseMethods();
                 });
             });
@@ -303,10 +304,10 @@ class UserInterface {
 
     updateCoursePrerequisites() {
         const courseServices = new CourseServices()
-        rl.question('Enter the name of major do you want update', (majorName) => {
-            rl.question('Enter name of course', (courseName) => {
-                rl.question('Enter course prerequisites  of course', (prerequisites) => {
-                    courseServices.updateCourseName(majorName, courseName, prerequisites);
+        rl.question('Enter the name of major do you want update: ', (majorName) => {
+            rl.question('Enter name of course: ', (courseName) => {
+                rl.question('Enter course prerequisites  of course: ', (prerequisites) => {
+                    courseServices.updateCoursePrerequisites(majorName, courseName, prerequisites);
                     this.displayCourseMethods();
                 });
             });
