@@ -14,11 +14,12 @@ export class CollegeServices {
         const ifExist = this.isCollegeExist(college.collegeName);
 
         if (ifExist) {
-            console.log("this college is already exist");
+            console.log("this college is already exist, you can't add it again");
         } else {
             college.collegeId = this.generateCollegeId();
             college.Major = [];
             universityList.push(college);
+            console.log("the add college process successful");
         }
     }
 
@@ -38,10 +39,10 @@ export class CollegeServices {
         const collegeIndex = this.getCollegeIndex(oldName);
 
         if (collegeIndex === -1) {
-            console.log("This college doesn't exit");
+            console.log(`There is no college in this name: ${oldName}`);
         } else {
             universityList[collegeIndex].collegeName = newName;
-            console.log("The college name has been successfully modified");
+            console.log(`The college name has been successfully modified to: ${newName}`);
         }
     }
 
@@ -52,7 +53,11 @@ export class CollegeServices {
         }
         let ifExist = universityList.find(college => college.collegeName.toLowerCase() === collegeName.toLowerCase());
 
-        return ifExist !== undefined ? true : false;
+        if (ifExist !== undefined ) {
+            console.log(`This college: ${collegeName} exists`);
+        } else {
+            console.log(`There is no college in this name: ${collegeName}`);
+        }
     }
 
     // Get an index for a specific college

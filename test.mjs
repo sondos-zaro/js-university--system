@@ -36,6 +36,9 @@ universityList.forEach(element => {
     element.Major.forEach(element => console.log(element.course))
 });
 
+
+
+
 // Test College Service 
 const college = new College("College of Engineering");
 const collegeService = new CollegeServices();
@@ -50,10 +53,11 @@ collegeService.deleteCollege("AU College");
 collegeService.updateCollege("IT college", "College of Information Technologies");
 
 // Check if a specific college exist 
-console.log(collegeService.isCollegeExist("IT College"));
+collegeService.isCollegeExist("IT College");
 
-// Print the university list after updates
-console.log(universityList);
+
+
+
 
 //Test Major Service  
 const major = new Major("College of Architecture");

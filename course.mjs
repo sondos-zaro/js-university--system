@@ -104,9 +104,9 @@ export class CourseServices extends MajorServices {
 
         if (courseIndex != -1 && majorIndex != -1) {
             universityList[collegeIndex].Major[majorIndex].course.splice(courseIndex, 1);
-            console.log(`The delete process was successful!`)
+            console.log(`The delete process was successful!`);
         } else {
-            console.log(`The delete process was not successful, There is no course in this name: ${courseName}!`)
+            console.log(`The delete process was not successful, There is no course in this name: ${courseName}, or na major in this name: ${majorName}!`);
         }
 
     }
@@ -122,7 +122,11 @@ export class CourseServices extends MajorServices {
             ifExist = undefined;
         }
 
-        return ifExist !== undefined ? true : false;
+        if (ifExist !== undefined ) {
+            console.log(`This course: ${courseName} exists`);
+        } else {
+            console.log(`There is no course in this name: ${courseName}`);
+        }
     }
 
     addCourse(majorName, course) {
