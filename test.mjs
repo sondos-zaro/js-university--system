@@ -73,7 +73,7 @@ majorService.deleteMajor("College of Information Technologies", "IT");
 majorService.updateMajorName("IT", "Architecture Engineering");
 
 // Check if a specific major exist 
-console.log(majorService.isMajorExist("Architecture Engineering"));
+majorService.isMajorExist("Architecture Engineering");
 
 // Print the majors after updates
 universityList.forEach(college => console.log(college.Major));
