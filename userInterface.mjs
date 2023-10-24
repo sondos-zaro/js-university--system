@@ -69,13 +69,15 @@ class UserInterface {
                 }
 
         });
-    }
+    }1
+
 
     addCollege() {
         rl.question('Enter college name: ', (collegeName) => {
             const college = new College(collegeName);
             const collegeService = new CollegeServices();
             collegeService.addCollege(college);
+            this.displayCollegeMethods();
         });
 
     }
@@ -85,7 +87,7 @@ class UserInterface {
 
         rl.question('Enter What college name do you want to remove: ', (collegeName) => {
             collegeService.deleteCollege(collegeName);
-            this.displaySelectList()
+            this.displayCollegeMethods();
         });
     }
 
@@ -95,7 +97,7 @@ class UserInterface {
         rl.question('Enter old name: ', (oldName) => {
             rl.question('Enter new name: ', (newName) => {
                 collegeService.updateCollege(oldName, newName);
-                this.displaySelectList()
+                this.displayCollegeMethods();
             })
         });
     }
@@ -111,7 +113,7 @@ class UserInterface {
                 console.log(`The ${collegeName} college is not found in the university list`)
             }
 
-            this.displaySelectList()
+            this.displayCollegeMethods();
         });
 
     }

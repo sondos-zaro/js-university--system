@@ -121,12 +121,8 @@ export class CourseServices extends MajorServices {
             console.log(`There is no major in this name: ${majorName}!`);
             ifExist = undefined;
         }
-
-        if (ifExist !== undefined ) {
-            console.log(`This course: ${courseName} exists`);
-        } else {
-            console.log(`There is no course in this name: ${courseName}`);
-        }
+        
+        return ifExist !== undefined ? true : false;
     }
 
     addCourse(majorName, course) {

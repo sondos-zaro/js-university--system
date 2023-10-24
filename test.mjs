@@ -14,22 +14,22 @@ const programmingCourse = new Course("Basics of programming", 3, "College Requir
 const dataScienceCourse = new Course("Data science", 3, "College Requirement", "Basics of programming");
 
 // Add a new course to university list
-courseService.addCourse("IT", geometricCourse)
-courseService.addCourse("UC", EnglishCourse)
-courseService.addCourse("IT", programmingCourse)
-courseService.addCourse("IT", dataScienceCourse)
+courseService.addCourse("IT", geometricCourse);
+courseService.addCourse("UC", EnglishCourse);
+courseService.addCourse("IT", programmingCourse);
+courseService.addCourse("IT", dataScienceCourse);
 
 // Check whether the course exists in the university list
-console.log(courseService.isCourseExist("UC", "data structue"))
+console.log(courseService.isCourseExist("UC", "data structue"));
 
 // Delete a course form university list
-courseService.deleteCourse("UC", "data structue")
+courseService.deleteCourse("UC", "data structue");
 
 // Editing a specific course in university list
-courseService.updateCourseName("ac", "data structue", "Data Structure")
-courseService.updateCourseHours("ac", "Data Structure", 5)
-courseService.updateCourseType("ac", "Data Structure", "University Requirement")
-courseService.updateCoursePrerequisites("ac", "Data Structure", "none")
+courseService.updateCourseName("ac", "data structue", "Data Structure");
+courseService.updateCourseHours("ac", "Data Structure", 5);
+courseService.updateCourseType("ac", "Data Structure", "University Requirement");
+courseService.updateCoursePrerequisites("ac", "Data Structure", "none");
 
 // Print all courses in university list
 universityList.forEach(element => {
@@ -53,7 +53,7 @@ collegeService.deleteCollege("AU College");
 collegeService.updateCollege("IT college", "College of Information Technologies");
 
 // Check if a specific college exist 
-collegeService.isCollegeExist("IT College");
+console.log(collegeService.isCollegeExist("IT College"));
 
 
 
@@ -73,7 +73,7 @@ majorService.deleteMajor("College of Information Technologies", "IT");
 majorService.updateMajorName("IT", "Architecture Engineering");
 
 // Check if a specific major exist 
-majorService.isMajorExist("Architecture Engineering");
+console.log(majorService.isMajorExist("Architecture Engineering"));
 
 // Print the majors after updates
 universityList.forEach(college => console.log(college.Major));

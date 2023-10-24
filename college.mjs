@@ -53,11 +53,7 @@ export class CollegeServices {
         }
         let ifExist = universityList.find(college => college.collegeName.toLowerCase() === collegeName.toLowerCase());
 
-        if (ifExist !== undefined ) {
-            console.log(`This college: ${collegeName} exists`);
-        } else {
-            console.log(`There is no college in this name: ${collegeName}`);
-        }
+        return ifExist !== undefined ? true : false;
     }
 
     // Get an index for a specific college
