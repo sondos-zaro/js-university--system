@@ -20,7 +20,7 @@ courseService.addCourse("Computer Science", programmingCourse);
 courseService.addCourse("Computer System Engineering", dataScienceCourse);
 
 // Check whether the course exists in the university list
-courseService.isCourseExist("Human Medicine Specialty", "Anatomy");
+console.log(courseService.isCourseExist("Human Medicine Specialty", "Anatomy"));
 
 // Delete a course form university list
 courseService.deleteCourse("Computer System Engineering", "Engineering mathematics");
@@ -38,7 +38,6 @@ universityList.forEach(element => {
 
 
 
-
 // Test College Service 
 const college = new College("College of Engineering");
 const collegeService = new CollegeServices();
@@ -53,7 +52,10 @@ collegeService.deleteCollege("Medicine and Health Sciences");
 collegeService.updateCollege("Information Technology and Computer Engineering", "Information Technology and Computer System Engineering");
 
 // Check if a specific college exist 
-collegeService.isCollegeExist("Information Technology and Computer Engineering");
+console.log(collegeService.isCollegeExist("IT College"));
+
+
+
 
 
 //Test Major Service  
@@ -70,7 +72,7 @@ majorService.deleteMajor("Medicine and Health Sciences", "Healthy and Therapeuti
 majorService.updateMajorName("Computer System Engineering", "Computer Engineering");
 
 // Check if a specific major exist 
-majorService.isMajorExist("Architecture Engineering");
+console.log(majorService.isMajorExist("Architecture Engineering"));
 
 // Print the majors after updates
 universityList.forEach(college => console.log(college.Major));

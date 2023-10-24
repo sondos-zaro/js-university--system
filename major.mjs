@@ -48,11 +48,7 @@ export class MajorServices extends CollegeServices{
     
     // Check if major exists
     isMajorExist(majorName) {
-        if (this.getMajorIndex(majorName) != -1 ) {
-            console.log(`This major: ${majorName} exists`);
-        } else {
-            console.log(`There is no major in this name: ${majorName}`);
-        }
+        return this.getMajorIndex(majorName) !== -1 ? true : false;
     }
 
 

@@ -46,7 +46,7 @@ class UserInterface {
         2- Delete college 
         3- Edit College Name
         4- Check if college exists
-        5- Exit`);
+        5- Back`);
         this.getCollegeChoice();
     }
 
@@ -69,13 +69,15 @@ class UserInterface {
                 }
 
         });
-    }
+    }1
+
 
     addCollege() {
         rl.question('Enter college name: ', (collegeName) => {
             const college = new College(collegeName);
             const collegeService = new CollegeServices();
             collegeService.addCollege(college);
+            this.displayCollegeMethods();
         });
 
     }
@@ -85,7 +87,7 @@ class UserInterface {
 
         rl.question('Enter What college name do you want to remove: ', (collegeName) => {
             collegeService.deleteCollege(collegeName);
-            this.displaySelectList()
+            this.displayCollegeMethods();
         });
     }
 
@@ -95,7 +97,7 @@ class UserInterface {
         rl.question('Enter old name: ', (oldName) => {
             rl.question('Enter new name: ', (newName) => {
                 collegeService.updateCollege(oldName, newName);
-                this.displaySelectList()
+                this.displayCollegeMethods();
             })
         });
     }
@@ -106,12 +108,10 @@ class UserInterface {
         rl.question('Enter the name of the college you want to check for: ', (collegeName) => {
             if (collegeService.isCollegeExist(collegeName)) {
                 console.log(`The ${collegeName} college is exist`)
-            }
-            else {
+            } else {
                 console.log(`The ${collegeName} college is not found in the university list`)
             }
-
-            this.displaySelectList()
+            this.displayCollegeMethods();
         });
 
     }
@@ -122,7 +122,7 @@ class UserInterface {
         2- Delete major 
         3- Edit major Name
         4- Check if major exists
-        5- Exit`);
+        5- Back`);
         this.getMajorChoice();
     }
 
@@ -183,8 +183,13 @@ class UserInterface {
 
     ifMajorExist() {
         rl.question('Enter major name: ', (majorName) => {
-            const majorService = new MajorServices()
-            majorService.isMajorExist(majorName);
+            const majorService = new MajorServices();
+
+            if (majorService.isMajorExist(majorName)) {
+                console.log(`The ${majorName} major is exist`)
+            }else {
+                console.log(`The ${majorName} major is not found in the university list`)
+            }
             this.displayMajorMethods();
         });
     }
@@ -198,7 +203,7 @@ class UserInterface {
         5- Edit course type
         6- Edit course prerequisites
         7- Check if course exists
-        8- Exit`);
+        8- Back`);
         this.getCourseChoice();
     }
 
